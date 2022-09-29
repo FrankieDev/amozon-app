@@ -49,7 +49,7 @@ class App extends React.Component {
         let tempBook = [...this.state.books]
         const id = tempBook[tempBook.length - 1].id + 1
         item['id'] = id
-        //tempBook.push(item);
+        //tempBook.push(item)
         this.setState({ books: [...this.state.books, item] })
         this.initBooks()
     }
@@ -60,7 +60,7 @@ class App extends React.Component {
 
     initBooks = () => {
         this.setState((state, props) => ({
-            copyBooks: [...this.state.books],
+            copyBooks: [...state.books],
         }))
     }
 
@@ -97,7 +97,9 @@ class App extends React.Component {
 
     onRemoveItem = (id) => {
         var temp = [...this.state.books]
-        const res = temp.filter((item) => item.id == id)
+        const res = temp.filter((item) => item.id != id)
+
+        console.info(res)
 
         this.setState({ books: [...res] })
         this.initBooks()
